@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+        .left{
+            float: left;
+            height: 300px;
+            width: 300px;
+        }
+</style>
+<body>
+    {% for a in allusers %}
+    {% if user.username == a.username %}
+<div style="background-color:#EEEEEE;height:50px;width:1200px;">
+    <h1> User View <a href="{% url 'event_new' %}"></h1></div>
+ <br>
+    {% for event in events %}
+<div class="left">{% if event.Event_image %}
+      <a href="{{ event.get_absolute_url }}"><img src="{{event.Event_image.url}}" /></a><br>
+    {% endif %}
+      <a href="{{ event.get_absolute_url }}">{{event.Event_name}}: {{event.Event_location}}</a></div>
+      {% empty %}<li>Sorry, no event information yet.</li>
+ {% endfor %}
+             </tr>
+    </table>
+{% endif %}
+{% endfor %}
+</body>
+</html>
+{% endblock %}

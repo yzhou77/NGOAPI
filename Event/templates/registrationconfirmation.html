@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration details</title>
+</head>
+<style>
+.button{
+display:block;
+width:100px;
+height:20px;
+background:#4E9CAF;
+padding:10px;
+text-align:center;
+border-radius:5px;
+color:white;
+font-weight:bold;
+}
+</style>
+<body>
+<h1>Event Registration Detail: {{registration.Event_name}}</h1><br>
+ Event name:
+ {{registration.Event_name}}<br>
+ First name:
+ {{registration.First_name}}<br>
+ Last name:
+ {{registration.Last_name}}<br>
+ Email id:
+ {{registration.Email_id}}<br>
+ Contact #:
+ {{registration.Contact}}<br>
+ Address:
+ {{registration.Address}}<br>
+ Total adult qty:
+ {{registration.Total_adult_qty}}<br>
+ Total child qty:
+ {{registration.Total_child_qty}}<br>
+ Price for adult:
+  $ {{event.Adult_ticket_price}}<br>
+ Price for child:
+  $ {{event.Child_ticket_price}}<br>
+<a style="color:red;">
+ Total price: $
+<script>
+  var a ={{event.Adult_ticket_price}}*{{registration.Total_adult_qty}}+ {{event.Child_ticket_price}}*{{registration.Total_child_qty}};
+  a = a.toFixed(2)
+  document.write(a);
+</script></a>
+<br><br>
+ <a class="button" href="{% url 'confirmed' event.Event_id %}">Confirm</a>
+<br>
+</body>
+</html>
+
+{%  endblock  %}

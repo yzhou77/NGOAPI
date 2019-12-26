@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+
+    {% for u in adminusers %}
+    {% if user.username == u.username %}
+<div class="content">
+  <div style="background-color:#EEEEEE;height:50px;width:1200px;">
+    <h1>User Management</h1></div>
+    <h2><a href="{% url 'User:user_new' %}" style="float:right"  >Add User</a></h2>
+
+  <table  border="1">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+   {% for obj in users %}
+  <tr>
+    <td>{{obj.firstName}}</td>
+    <td>{{obj.lastName}}</td>
+    <td>{{obj.email}}</td>
+    <td>{{obj.role}}</td>
+      <td><a href="{% url 'User:user_edit' pk=obj.pk %}">Edit</a></td>
+    <td><a href="{% url 'User:user_delete' pk=obj.pk %}" onclick="return confirm('Are you sure you want to delete this?')"> delete</a></td>
+  </tr>
+   {% endfor %}
+  </table>
+
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

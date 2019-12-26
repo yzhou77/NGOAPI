@@ -1,0 +1,44 @@
+{% extends "base3.html" %}
+{% block content %}
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login.</p>
+        {% endif %}
+    {% endif %}
+<style>
+.button{
+display:block;
+width:100px;
+height:20px;
+background:#4E9CAF;
+padding:10px;
+text-align:center;
+border-radius:5px;
+color:white;
+font-weight:bold;
+}</style>
+    <h2> Personal Information Login </h2>
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+
+        </table>
+        <input type="submit" value="login"/>
+        <a href="{% url 'signup' %}" class ="button">Signup</a>
+{%  endblock  %}
